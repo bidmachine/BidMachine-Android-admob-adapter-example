@@ -1,2 +1,16 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
+
+rootProject.name = "BidMachine-Android-admob-adapter-example"
+
 include ':example_admob',
         ':example_admob_fetch'
