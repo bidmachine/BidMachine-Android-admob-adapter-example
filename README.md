@@ -6,7 +6,6 @@
 * [BidMachine AdMob integration documentation](https://docs.bidmachine.io/docs/admob)
 
 ## Types of integration
-* [Classic AdMob implementation](example_admob)
 * [HeaderBidding AdMob implementation](example_admob_fetch)
 
 ## Working with price rounding
