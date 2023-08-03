@@ -4,17 +4,18 @@ plugins {
 }
 
 ext {
-    admob_version = "22.1.0"
-    bidmachine_version = "2.2.0"
-    admob_adapter_version = "$bidmachine_version.26"
+    admob_version = "22.2.0"
+    bidmachine_version = "2.3.2"
+    admob_adapter_version = "$bidmachine_version.27"
     bidmachine_adcolony_version = "$bidmachine_version.11"
-    bidmachine_amazon_version = "$bidmachine_version.9"
-    bidmachine_criteo_version = "$bidmachine_version.10"
-    bidmachine_meta_audience_version = "$bidmachine_version.12"
-    bidmachine_my_target_version = "$bidmachine_version.9"
-    bidmachine_pangle_version = "$bidmachine_version.4"
-    bidmachine_tapjoy_version = "$bidmachine_version.9"
-    bidmachine_vungle_version = "$bidmachine_version.2"
+    bidmachine_amazon_version = "$bidmachine_version.12"
+    bidmachine_criteo_version = "$bidmachine_version.11"
+    bidmachine_meta_audience_version = "$bidmachine_version.13"
+    bidmachine_mintegral_version = "$bidmachine_version.4"
+    bidmachine_my_target_version = "$bidmachine_version.10"
+    bidmachine_pangle_version = "$bidmachine_version.6"
+    bidmachine_tapjoy_version = "$bidmachine_version.10"
+    bidmachine_vungle_version = "$bidmachine_version.3"
 }
 
 allprojects {
@@ -26,15 +27,6 @@ allprojects {
         maven {
             name "BidMachine Ads maven repository"
             url "https://artifactory.bidmachine.io/bidmachine"
-        }
-        // Add Pangle maven repository
-        maven {
-            url "https://artifact.bytedance.com/repository/pangle"
-        }
-        // Add Tapjoy maven repository
-        maven {
-            name "Tapjoy's maven repo"
-            url "https://sdk.tapjoy.com/"
         }
     }
 }

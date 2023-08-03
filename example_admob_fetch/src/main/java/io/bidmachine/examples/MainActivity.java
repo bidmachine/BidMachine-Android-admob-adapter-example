@@ -110,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
         // Initialize BidMachine SDK first
         BidMachine.setTestMode(true);
         BidMachine.setLoggingEnabled(true);
-        BidMachine.initialize(this, BID_MACHINE_SELLER_ID,
+        BidMachine.initialize(this,
+                              BID_MACHINE_SELLER_ID,
                               () -> MobileAds.initialize(this, initializationStatus -> {
                                   isAdMobInitialized = true;
 
