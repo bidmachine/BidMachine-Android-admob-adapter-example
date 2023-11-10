@@ -1,4 +1,4 @@
-package io.bidmachine.examples;
+package io.bidmachine.example;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +38,7 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import io.bidmachine.BidMachine;
 import io.bidmachine.banner.BannerRequest;
 import io.bidmachine.banner.BannerSize;
-import io.bidmachine.examples.databinding.ActivityMainBinding;
+import io.bidmachine.example.databinding.ActivityMainBinding;
 import io.bidmachine.interstitial.InterstitialRequest;
 import io.bidmachine.models.AuctionResult;
 import io.bidmachine.nativead.NativeRequest;

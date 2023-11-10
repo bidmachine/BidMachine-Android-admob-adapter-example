@@ -34,7 +34,7 @@ MobileAds.initialize(this, new OnInitializationCompleteListener() {
 
 > **Warning** If BidMachine is not initialized, then ads will not be loaded!
 
-[*Example*](src/main/java/io/bidmachine/examples/MainActivity.java#L109)
+[*Example*](src/main/java/io/bidmachine/example/MainActivity.java#L109)
 
 ## Banner implementation
 ```java
@@ -69,7 +69,7 @@ private void loadAdMobBanner(@NonNull BannerRequest bannerRequest) {
     adView.loadAd(adRequest);
 }
 ```
-[*Example*](src/main/java/io/bidmachine/examples/MainActivity.java#L138)
+[*Example*](src/main/java/io/bidmachine/example/MainActivity.java#L138)
 
 ## MREC implementation
 ```java
@@ -104,7 +104,7 @@ private void loadAdMobMrec(@NonNull BannerRequest bannerRequest) {
     adView.loadAd(adRequest);
 }
 ```
-[*Example*](src/main/java/io/bidmachine/examples/MainActivity.java#L232)
+[*Example*](src/main/java/io/bidmachine/example/MainActivity.java#L232)
 
 ## Interstitial implementation
 ```java
@@ -133,7 +133,7 @@ private void loadAdMobInterstitial(@NonNull InterstitialRequest interstitialRequ
     InterstitialAd.load(this, INTERSTITIAL_ID, adRequest, new InterstitialLoadListener());
 }
 ```
-[*Example*](src/main/java/io/bidmachine/examples/MainActivity.java#L326)
+[*Example*](src/main/java/io/bidmachine/example/MainActivity.java#L326)
 
 ## Rewarded implementation
 ```java
@@ -161,7 +161,7 @@ private void loadAdMobRewarded(@NonNull RewardedRequest rewardedRequest) {
     RewardedAd.load(this, REWARDED_ID, adRequest, new RewardedLoadListener());
 }
 ```
-[*Example*](src/main/java/io/bidmachine/examples/MainActivity.java#L413)
+[*Example*](src/main/java/io/bidmachine/example/MainActivity.java#L413)
 
 ## Native implementation
 ```java
@@ -194,7 +194,7 @@ private void loadAdMobNative(@NonNull NativeRequest nativeRequest) {
     adLoader.loadAd(adRequest);
 }
 ```
-[*Example*](src/main/java/io/bidmachine/examples/MainActivity.java#L500)
+[*Example*](src/main/java/io/bidmachine/example/MainActivity.java#L500)
 
 ## Utils
 Ways to set up AdRequest by BidMachine AdRequest:

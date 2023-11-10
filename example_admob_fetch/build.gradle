@@ -1,24 +1,30 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace "io.bidmachine.example"
+
     compileSdk 33
+
     defaultConfig {
-        applicationId "io.bidmachine.examples"
+        applicationId "io.bidmachine.example"
         minSdk 19
         targetSdk 33
         versionCode 8
         versionName "1.2.0"
         multiDexEnabled true
     }
+
     buildFeatures {
         viewBinding true
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
