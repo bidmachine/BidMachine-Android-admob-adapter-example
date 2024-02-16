@@ -2,7 +2,7 @@
 
 ## Useful links
 * [AdMob Ad Ops](https://docs.bidmachine.io/docs/ad-ops-google-admob-v2)
-* [BidMachine integration documentation](https://wiki.appodeal.com/display/BID/BidMachine+Android+SDK+Documentation)
+* [BidMachine integration documentation](https://docs.bidmachine.io/docs/in-house-mediation-android)
 * [BidMachine AdMob integration documentation](https://docs.bidmachine.io/docs/admob)
 
 ## Types of integration
