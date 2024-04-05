@@ -1,12 +1,12 @@
 plugins {
-    id 'com.android.application' version '7.2.2' apply false
-    id 'com.android.library' version '7.2.2' apply false
+    id 'com.android.application' version '8.2.2' apply false
+    id 'com.android.library' version '8.2.2' apply false
 }
 
 ext {
     admob_version = "22.6.0"
-    bidmachine_version = "2.5.1"
-    admob_adapter_version = "$bidmachine_version.34"
+    bidmachine_version = "2.6.0"
+    admob_adapter_version = "$bidmachine_version.35"
 }
 
 allprojects {
