@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "io.bidmachine.example"
-        minSdk 19
+        minSdk 21
         targetSdk 34
         versionCode 8
         versionName "1.2.0"
@@ -32,9 +32,9 @@ android {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:1.4.1"
-    implementation "androidx.annotation:annotation:1.4.0"
-    implementation "com.google.android.material:material:1.6.1"
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.annotation:annotation:1.7.1"
+    implementation "com.google.android.material:material:1.12.0"
 
     implementation "com.google.android.gms:play-services-ads:$admob_version"
 
