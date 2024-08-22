@@ -4,9 +4,9 @@ plugins {
 }
 
 ext {
-    admob_version = "23.0.0"
-    bidmachine_version = "2.7.0"
-    admob_adapter_version = "$bidmachine_version.36"
+    admob_version = "23.3.0"
+    bidmachine_version = "3.0.0"
+    admob_adapter_version = "$bidmachine_version.37"
 }
 
 allprojects {
