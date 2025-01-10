@@ -21,6 +21,8 @@ Before requesting ad, you need to initialize the SDKs.
 
 Wait for AdMob ```OnInitializationCompleteListener``` to fire. This mean SDK is initialized.
 
+Java:
+
 ```java
 MobileAds.initialize(context, new OnInitializationCompleteListener() {
     @Override
@@ -31,6 +33,8 @@ MobileAds.initialize(context, new OnInitializationCompleteListener() {
     }
 });
 ```
+
+Kotlin:
 
 ```kotlin
 MobileAds.initialize(context) {
@@ -48,6 +52,8 @@ MobileAds.initialize(context) {
 2. Make ad requests.
 
 > **Warning** If BidMachine is not initialized, then ads will not be loaded!
+
+Java:
 
 ```java
 BidMachine.setTestMode(true);
@@ -68,6 +74,8 @@ initialize(context, BID_MACHINE_SOURCE_ID, new InitializationCallback() {
     }
 });
 ```
+
+Kotlin:
 
 ```kotlin
 BidMachine.setTestMode(true)
@@ -90,6 +98,8 @@ No action required.
 
 ### Prebid
 
+Java:
+
 ```java
 private void loadBanner() {
     // Create new BidMachine request
@@ -110,6 +120,8 @@ private void loadBanner() {
     bannerRequest.request(this);
 }
 ```
+
+Kotlin:
 
 ```kotlin
 private fun loadBanner() {
@@ -141,6 +153,8 @@ No action required.
 
 ### Prebid
 
+Java:
+
 ```java
 private void loadMrec() {
     // Create new BidMachine request
@@ -161,6 +175,8 @@ private void loadMrec() {
     bannerRequest.request(this);
 }
 ```
+
+Kotlin:
 
 ```kotlin
 private fun loadMrec() {
@@ -192,6 +208,8 @@ No action required.
 
 ### Prebid
 
+Java:
+
 ```java
 private void loadInterstitial() {
     // Create new BidMachine request
@@ -211,6 +229,8 @@ private void loadInterstitial() {
     interstitialRequest.request(this);
 }
 ```
+
+Kotlin:
 
 ```kotlin
 private fun loadInterstitial() {
@@ -241,6 +261,8 @@ No action required.
 
 ### Prebid
 
+Java:
+
 ```java
 private void loadRewarded() {
     // Create new BidMachine request
@@ -260,6 +282,8 @@ private void loadRewarded() {
     rewardedRequest.request(this);
 }
 ```
+
+Kotlin:
 
 ```kotlin
 private fun loadRewarded() {
@@ -290,6 +314,8 @@ No action required.
 
 ### Prebid
 
+Java:
+
 ```java
 private void loadNative() {
     // Create new BidMachine request
@@ -309,6 +335,8 @@ private void loadNative() {
     nativeRequest.request(this);
 }
 ```
+
+Kotlin:
 
 ```kotlin
 private void loadNative() {
@@ -335,29 +363,35 @@ private void loadNative() {
 
 Ways to set up AdRequest by BidMachine AdRequest:
 
-* Create new AdRequest instance
+* Create new AdRequest instance:
+  Java:
     ```java
     AdRequest adRequest = BidMachineUtils.createAdRequest(bidMachineAdRequest);
     ```
 
+  Kotlin:
     ```kotlin
     val adRequest = BidMachineUtils.createAdRequest(bidMachineAdRequest)
     ```
 
-* Create new AdRequest.Builder instance
+* Create new AdRequest.Builder instance:
+  Java:
     ```java
     AdRequest.Builder adRequestBuilder = BidMachineUtils.createAdRequestBuilder(bidMachineAdRequest);
     ```
 
+  Kotlin:
     ```kotlin
     val adRequestBuilder = BidMachineUtils.createAdRequestBuilder(bidMachineAdRequest)
     ```
 
-* Fill existing AdRequest.Builder by BidMachine AdRequest
+* Fill existing AdRequest.Builder by BidMachine AdRequest:
+  Java:
     ```java
    BidMachineUtils.appendRequest(adRequestBuilder, bidMachineAdRequest);
     ```
 
+  Kotlin:
    ```kotlin
    BidMachineUtils.appendRequest(adRequestBuilder, bidMachineAdRequest)
    ```
