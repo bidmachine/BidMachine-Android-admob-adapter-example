@@ -1,0 +1,22 @@
+[versions]
+android-plugin = "8.2.2"
+androidx-annotation = "1.0.0"
+appcompat = "1.6.1"
+bidmachine-ads-adapters-admob = "3.1.1.40"
+bidmachine-ads = "3.1.1"
+kotlin = "1.8.22"
+material = "1.12.0"
+playservices-ads = "23.6.0"
+
+[libraries]
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "androidx-annotation" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+bidmachine-ads = { module = "io.bidmachine:ads", version.ref = "bidmachine-ads" }
+bidmachine-ads-adapters-admob = { module = "io.bidmachine:ads.adapters.admob", version.ref = "bidmachine-ads-adapters-admob" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+playservices-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playservices-ads" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "android-plugin" }
+android-library = { id = "com.android.library", version.ref = "android-plugin" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

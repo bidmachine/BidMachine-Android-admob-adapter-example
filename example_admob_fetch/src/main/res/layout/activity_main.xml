@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
@@ -8,12 +9,34 @@
         android:layout_width="match_parent"
         android:orientation="vertical">
 
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgAdIntegration"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/button_margin"
+            android:layout_marginStart="@dimen/button_margin"
+            android:layout_width="match_parent"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cWaterfallAdIntegration"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/waterfall" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cPrebidAdIntegration"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/prebid" />
+
+        </com.google.android.material.chip.ChipGroup>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bInitialize"
-            style="@style/MaterialButton"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/button_margin"
-            android:layout_marginRight="@dimen/button_margin"
+            android:layout_marginEnd="@dimen/button_margin"
+            android:layout_marginStart="@dimen/button_margin"
             android:layout_width="match_parent"
             android:text="@string/initialize"
             android:textSize="@dimen/button_text_size" />
@@ -25,11 +48,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bLoadBanner"
-                style="@style/MaterialButton"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginEnd="@dimen/button_half_margin"
+                android:layout_marginStart="@dimen/button_margin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:text="@string/load_banner"
@@ -37,11 +59,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bShowBanner"
-                style="@style/MaterialButton"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginEnd="@dimen/button_margin"
+                android:layout_marginStart="@dimen/button_half_margin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:text="@string/show_banner"
@@ -56,11 +77,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bLoadMrec"
-                style="@style/MaterialButton"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginEnd="@dimen/button_half_margin"
+                android:layout_marginStart="@dimen/button_margin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:text="@string/load_mrec"
@@ -68,11 +88,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bShowMrec"
-                style="@style/MaterialButton"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginEnd="@dimen/button_margin"
+                android:layout_marginStart="@dimen/button_half_margin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:text="@string/show_mrec"
@@ -87,11 +106,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bLoadInterstitial"
-                style="@style/MaterialButton"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginEnd="@dimen/button_half_margin"
+                android:layout_marginStart="@dimen/button_margin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:text="@string/load_interstitial"
@@ -99,11 +117,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bShowInterstitial"
-                style="@style/MaterialButton"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginEnd="@dimen/button_margin"
+                android:layout_marginStart="@dimen/button_half_margin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:text="@string/show_interstitial"
@@ -118,11 +135,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bLoadRewarded"
-                style="@style/MaterialButton"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginEnd="@dimen/button_half_margin"
+                android:layout_marginStart="@dimen/button_margin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:text="@string/load_rewarded"
@@ -130,11 +146,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bShowRewarded"
-                style="@style/MaterialButton"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginEnd="@dimen/button_margin"
+                android:layout_marginStart="@dimen/button_half_margin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:text="@string/show_rewarded"
@@ -149,11 +164,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bLoadNative"
-                style="@style/MaterialButton"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginEnd="@dimen/button_half_margin"
+                android:layout_marginStart="@dimen/button_margin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:text="@string/load_native"
@@ -161,11 +175,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bShowNative"
-                style="@style/MaterialButton"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/button_margin"
-                android:layout_marginRight="@dimen/button_margin"
+                android:layout_marginEnd="@dimen/button_margin"
+                android:layout_marginStart="@dimen/button_half_margin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:text="@string/show_native"
