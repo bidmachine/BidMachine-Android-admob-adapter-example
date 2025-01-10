@@ -33,14 +33,14 @@ internal class PrebidAdIntegrationAdapter : BaseAdIntegrationAdapter() {
     private var nativeRequest: NativeRequest? = null
 
     override fun initialize(context: Context, listener: OnInitializationCompleteListener) {
-BidMachine.setTestMode(true)
-BidMachine.setLoggingEnabled(true)
-BidMachine.initialize(context, BID_MACHINE_SOURCE_ID) {
-    MobileAds.initialize(context) {
-        isAdMobInitialized.set(true)
-        listener.onInitializationComplete(it)
-    }
-}
+        BidMachine.setTestMode(true)
+        BidMachine.setLoggingEnabled(true)
+        BidMachine.initialize(context, BID_MACHINE_SOURCE_ID) {
+            MobileAds.initialize(context) {
+                isAdMobInitialized.set(true)
+                listener.onInitializationComplete(it)
+            }
+        }
     }
 
     override fun loadBanner(context: Context, listener: BannerAdListener) {
