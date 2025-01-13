@@ -57,12 +57,8 @@ Java:
 
 ```java
 BidMachine.setTestMode(true);
-BidMachine.
-
-setLoggingEnabled(true);
-BidMachine.
-
-initialize(context, BID_MACHINE_SOURCE_ID, new InitializationCallback() {
+BidMachine.setLoggingEnabled(true);
+BidMachine.initialize(context, BID_MACHINE_SOURCE_ID, new InitializationCallback() {
     @Override
     public void onInitialized () {
         MobileAds.initialize(context, new OnInitializationCompleteListener() {
@@ -125,21 +121,21 @@ Kotlin:
 
 ```kotlin
 private fun loadBanner() {
-    // Create new BidMachine request
-    val bannerRequest = BidMachineAdRequestBuilderFactory.createBannerRequestBuilder()
-            .setSize(BannerSize.Size_320x50)
-            .setListener(object : BannerRequest.AdRequestListener {
-                override fun onRequestSuccess(bannerRequest: BannerRequest, auctionResult: AuctionResult) {
-                    // Create AdRequest
-                    val adRequest = BidMachineUtils.createAdRequest(bannerRequest)
-                    // Load AdMob Banner
-                    loadAdMobMrec(adRequest)
-                }
-            })
-            .build().also {
-                // Request an ad from BidMachine without loading it
-                it.request(context)
+// Create new BidMachine request
+val bannerRequest = BidMachineAdRequestBuilderFactory.createBannerRequestBuilder()
+        .setSize(BannerSize.Size_320x50)
+        .setListener(object : BannerRequest.AdRequestListener {
+            override fun onRequestSuccess(bannerRequest: BannerRequest, auctionResult: AuctionResult) {
+                // Create AdRequest
+                val adRequest = BidMachineUtils.createAdRequest(bannerRequest)
+                // Load AdMob Banner
+                loadAdMobMrec(adRequest)
             }
+        })
+        .build().also {
+            // Request an ad from BidMachine without loading it
+            it.request(context)
+        }
 }
 ```
 

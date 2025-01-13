@@ -8,7 +8,6 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardedAd
-import io.bidmachine.example.integration.adapter.AdIntegrationAdapter
 import io.bidmachine.example.integration.listener.BannerAdListener
 import io.bidmachine.example.integration.listener.InterstitialAdListener
 import io.bidmachine.example.integration.listener.NativeAdListener
@@ -16,12 +15,13 @@ import io.bidmachine.example.integration.adapter.PrebidAdIntegrationAdapter
 import io.bidmachine.example.integration.listener.RewardedAdListener
 import io.bidmachine.example.integration.adapter.WaterfallAdIntegrationAdapter
 import io.bidmachine.example.databinding.ActivityMainBinding
+import io.bidmachine.example.integration.adapter.BaseAdIntegrationAdapter
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var adIntegrationAdapter: AdIntegrationAdapter
+    private lateinit var adIntegrationAdapter: BaseAdIntegrationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

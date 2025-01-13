@@ -15,23 +15,24 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.OnUserEarnedRewardListener
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import io.bidmachine.core.Utils
 import io.bidmachine.example.AppLogger
 import io.bidmachine.example.databinding.NativeAdBinding
 import io.bidmachine.example.integration.listener.BannerAdListener
 import io.bidmachine.example.integration.listener.InterstitialAdListener
 import io.bidmachine.example.integration.listener.NativeAdListener
 import io.bidmachine.example.integration.listener.RewardedAdListener
+import io.bidmachine.example.onUiThread
 import io.bidmachine.utils.ViewHelper
 import java.util.concurrent.atomic.AtomicBoolean
 
-internal abstract class BaseAdIntegrationAdapter : AdIntegrationAdapter {
+internal abstract class BaseAdIntegrationAdapter {
 
     private var bannerAdView: AdView? = null
 
@@ -43,7 +44,11 @@ internal abstract class BaseAdIntegrationAdapter : AdIntegrationAdapter {
 
     private var nativeAd: NativeAd? = null
 
-    override fun isInitialized() = isAdMobInitialized.get()
+    abstract fun initialize(context: Context, listener: OnInitializationCompleteListener)
+
+    fun isInitialized() = isAdMobInitialized.get()
+
+    abstract fun loadBanner(context: Context, listener: BannerAdListener)
 
     protected fun loadAdMobBanner(
         context: Context,
@@ -53,7 +58,7 @@ internal abstract class BaseAdIntegrationAdapter : AdIntegrationAdapter {
     ) {
         AppLogger.log("Banner", "load AdMob")
 
-        Utils.onUiThread {
+        onUiThread {
             bannerAdView = AdView(context).also {
                 it.layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -67,24 +72,26 @@ internal abstract class BaseAdIntegrationAdapter : AdIntegrationAdapter {
         }
     }
 
-    override fun showBanner(adContainer: ViewGroup) {
+    fun showBanner(adContainer: ViewGroup) {
         bannerAdView?.let {
-            Utils.onUiThread {
+            onUiThread {
                 addAdView(adContainer, it)
             }
         } ?: AppLogger.log("show error - banner object is null")
     }
 
     @CallSuper
-    override fun destroyBanner() {
+    open fun destroyBanner() {
         bannerAdView?.destroy()
         bannerAdView = null
     }
 
+    abstract fun loadMrec(context: Context, listener: BannerAdListener)
+
     protected fun loadAdMobMrec(context: Context, adUnitId: String, adRequest: AdRequest, listener: BannerAdListener) {
         AppLogger.log("Mrec", "load AdMob")
 
-        Utils.onUiThread {
+        onUiThread {
             mrecAdView = AdView(context).also {
                 it.layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -98,19 +105,21 @@ internal abstract class BaseAdIntegrationAdapter : AdIntegrationAdapter {
         }
     }
 
-    override fun showMrec(adContainer: ViewGroup) {
+    fun showMrec(adContainer: ViewGroup) {
         mrecAdView?.let {
-            Utils.onUiThread {
+            onUiThread {
                 addAdView(adContainer, it)
             }
         } ?: AppLogger.log("show error - mrec object is null")
     }
 
     @CallSuper
-    override fun destroyMrec() {
+    open fun destroyMrec() {
         mrecAdView?.destroy()
         mrecAdView = null
     }
+
+    abstract fun loadInterstitial(context: Context, listener: InterstitialAdListener)
 
     protected fun loadAdMobInterstitial(context: Context,
                                         adUnitId: String,
@@ -118,20 +127,22 @@ internal abstract class BaseAdIntegrationAdapter : AdIntegrationAdapter {
                                         listener: InterstitialAdListener) {
         AppLogger.log("Interstitial", "load AdMob")
 
-        Utils.onUiThread {
+        onUiThread {
             InterstitialAd.load(context, adUnitId, adRequest, InterstitialLoadListener(listener))
         }
     }
 
-    override fun showInterstitial(activity: Activity) {
+    fun showInterstitial(activity: Activity) {
         interstitialAd?.show(activity) ?: AppLogger.log("show error - interstitial object not loaded")
     }
 
     @CallSuper
-    override fun destroyInterstitial() {
+    open fun destroyInterstitial() {
         interstitialAd?.fullScreenContentCallback = null
         interstitialAd = null
     }
+
+    abstract fun loadRewarded(context: Context, listener: RewardedAdListener)
 
     protected fun loadAdMobRewarded(context: Context,
                                     adUnitId: String,
@@ -139,22 +150,24 @@ internal abstract class BaseAdIntegrationAdapter : AdIntegrationAdapter {
                                     listener: RewardedAdListener) {
         AppLogger.log("Rewarded", "load AdMob")
 
-        Utils.onUiThread {
+        onUiThread {
             RewardedAd.load(context, adUnitId, adRequest, RewardedLoadListener(listener))
         }
     }
 
-    override fun showRewarded(activity: Activity) {
+    fun showRewarded(activity: Activity) {
         rewardedAd?.let {
             it.show(activity, RewardedEarnedListener(it))
         } ?: AppLogger.log("show error - rewarded object not loaded")
     }
 
     @CallSuper
-    override fun destroyRewarded() {
+    open fun destroyRewarded() {
         rewardedAd?.fullScreenContentCallback = null
         rewardedAd = null
     }
+
+    abstract fun loadNative(context: Context, listener: NativeAdListener)
 
     protected fun loadAdMobNative(
         context: Context,
@@ -172,7 +185,7 @@ internal abstract class BaseAdIntegrationAdapter : AdIntegrationAdapter {
                 .loadAd(adRequest)
     }
 
-    override fun showNative(adContainer: ViewGroup) {
+    fun showNative(adContainer: ViewGroup) {
         nativeAd?.let { nativeAd ->
             val nativeAdBinding = NativeAdBinding.inflate(
                 LayoutInflater.from(adContainer.context),
@@ -194,7 +207,7 @@ internal abstract class BaseAdIntegrationAdapter : AdIntegrationAdapter {
     }
 
     @CallSuper
-    override fun destroyNative() {
+    open fun destroyNative() {
         nativeAd?.destroy()
         nativeAd = null
     }
