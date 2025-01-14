@@ -24,7 +24,6 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import io.bidmachine.BidMachine
 import io.bidmachine.example.databinding.ActivityIntegrationBinding
 import io.bidmachine.example.databinding.NativeAdBinding
-import io.bidmachine.utils.ViewHelper
 import java.util.concurrent.atomic.AtomicBoolean
 
 class WaterfallAdIntegrationActivity : AppCompatActivity() {
@@ -350,7 +349,7 @@ class WaterfallAdIntegrationActivity : AppCompatActivity() {
 
     private fun addAdView(adContainer: ViewGroup, view: View) {
         adContainer.removeAllViews()
-        ViewHelper.safeAddView(adContainer, view)
+        adContainer.safeAddView(view)
     }
 
     private inner class BannerViewListener : BannerAdListener {

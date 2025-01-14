@@ -34,7 +34,6 @@ import io.bidmachine.models.AuctionResult
 import io.bidmachine.nativead.NativeRequest
 import io.bidmachine.rewarded.RewardedRequest
 import io.bidmachine.utils.BMError
-import io.bidmachine.utils.ViewHelper
 import java.util.concurrent.atomic.AtomicBoolean
 
 class PrebidAdIntegrationActivity : AppCompatActivity() {
@@ -544,7 +543,7 @@ class PrebidAdIntegrationActivity : AppCompatActivity() {
 
     private fun addAdView(adContainer: ViewGroup, view: View) {
         adContainer.removeAllViews()
-        ViewHelper.safeAddView(adContainer, view)
+        adContainer.safeAddView(view)
     }
 
     private inner class BannerViewListener : BannerAdListener {
