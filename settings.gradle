@@ -3,9 +3,19 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-        jcenter()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
+    repositories {
+        google()
+        mavenCentral()
+        // Add BidMachine maven repository
         maven {
-            url "https://plugins.gradle.org/m2/"
+            name "BidMachine Ads maven repository"
+            url "https://artifactory.bidmachine.io/bidmachine"
         }
     }
 }

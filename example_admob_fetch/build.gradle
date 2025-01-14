@@ -1,17 +1,18 @@
-apply plugin: 'com.android.application'
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin)
+}
 
 android {
     namespace "io.bidmachine.example"
 
     compileSdk 34
-
     defaultConfig {
         applicationId "io.bidmachine.example"
         minSdk 21
         targetSdk 34
-        versionCode 8
-        versionName "1.2.0"
-        multiDexEnabled true
+        versionCode 10
+        versionName "1.4.0"
     }
 
     buildFeatures {
@@ -29,15 +30,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:1.6.1"
-    implementation "androidx.annotation:annotation:1.7.1"
-    implementation "com.google.android.material:material:1.12.0"
+    implementation libs.androidx.annotation
+    implementation libs.androidx.appcompat
+    implementation libs.material
 
-    implementation "com.google.android.gms:play-services-ads:$admob_version"
-
-    implementation "io.bidmachine:ads:$bidmachine_version"
-    implementation "io.bidmachine:ads.adapters.admob:$admob_adapter_version"
+    implementation libs.playservices.ads
+    implementation libs.bidmachine.ads
+    implementation libs.bidmachine.ads.adapters.admob
 }
