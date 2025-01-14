@@ -1,4 +1,4 @@
-package io.bidmachine.example.integration.listener
+package io.bidmachine.example
 
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd

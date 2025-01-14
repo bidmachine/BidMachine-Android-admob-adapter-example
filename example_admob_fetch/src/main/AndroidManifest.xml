@@ -24,6 +24,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".PrebidAdIntegrationActivity" />
+
+        <activity android:name=".WaterfallAdIntegrationActivity" />
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="YOUR_APPLICATION_ID" />
