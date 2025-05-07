@@ -2,7 +2,7 @@
 android-plugin = "8.2.2"
 androidx-annotation = "1.0.0"
 appcompat = "1.6.1"
-bidmachine-ads-adapters-admob = "3.2.1.43"
+bidmachine-ads-adapters-admob = "3.2.1.44"
 bidmachine-ads = "3.2.1"
 kotlin = "2.0.20"
 material = "1.12.0"
