@@ -6,7 +6,7 @@ plugins {
 android {
     namespace "io.bidmachine.example"
 
-    compileSdk 34
+    compileSdk 35
     defaultConfig {
         applicationId "io.bidmachine.example"
         minSdk 23

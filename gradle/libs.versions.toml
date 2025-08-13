@@ -2,11 +2,11 @@
 android-plugin = "8.2.2"
 androidx-annotation = "1.0.0"
 appcompat = "1.6.1"
-bidmachine-ads-adapters-admob = "3.3.0.46"
-bidmachine-ads = "3.3.0"
+bidmachine-ads-adapters-admob = "3.4.0.48"
+bidmachine-ads = "3.4.0"
 kotlin = "2.0.20"
 material = "1.12.0"
-playservices-ads = "24.4.0"
+playservices-ads = "24.5.0"
 
 [libraries]
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "androidx-annotation" }
