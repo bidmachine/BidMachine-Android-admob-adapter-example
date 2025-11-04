@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.google.ads.mediation.bidmachine.BidMachineUtils
-import com.google.ads.mediation.bidmachine.prebid.request.BidMachineAdRequestBuilderFactory
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
@@ -24,9 +23,10 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import io.bidmachine.AdPlacementConfig
+import io.bidmachine.BannerAdSize
 import io.bidmachine.BidMachine
 import io.bidmachine.banner.BannerRequest
-import io.bidmachine.banner.BannerSize
 import io.bidmachine.example.databinding.ActivityIntegrationBinding
 import io.bidmachine.example.databinding.NativeAdBinding
 import io.bidmachine.interstitial.InterstitialRequest
@@ -153,27 +153,27 @@ class PrebidAdIntegrationActivity : AppCompatActivity() {
         AppLogger.log("Banner", "load BidMachine")
 
         // Create new BidMachine request
-        bannerRequest = BidMachineAdRequestBuilderFactory.createBannerRequestBuilder()
-                .setSize(BannerSize.Size_320x50)
-                .setListener(object : BannerRequest.AdRequestListener {
-                    override fun onRequestSuccess(bannerRequest: BannerRequest, auctionResult: AuctionResult) {
-                        // Create AdRequest
-                        val adRequest = BidMachineUtils.createAdRequest(bannerRequest)
-                        // Create new AdView instance and load it
-                        loadAdMobBanner(context, BANNER_ID, adRequest, listener)
-                    }
+        bannerRequest = BannerRequest.Builder(
+            AdPlacementConfig.bannerBuilder(BannerAdSize.Banner).build()
+        ).setListener(object : BannerRequest.AdRequestListener {
+            override fun onRequestSuccess(bannerRequest: BannerRequest, auctionResult: AuctionResult) {
+                // Create AdRequest
+                val adRequest = BidMachineUtils.createAdRequest(bannerRequest)
+                // Create new AdView instance and load it
+                loadAdMobBanner(context, BANNER_ID, adRequest, listener)
+            }
 
-                    override fun onRequestFailed(bannerRequest: BannerRequest, bmError: BMError) {
-                        // Create AdRequest
-                        val adRequest = AdRequest.Builder().build()
-                        // Create new AdView instance and load it
-                        loadAdMobBanner(context, BANNER_ID, adRequest, listener)
-                    }
+            override fun onRequestFailed(bannerRequest: BannerRequest, bmError: BMError) {
+                // Create AdRequest
+                val adRequest = AdRequest.Builder().build()
+                // Create new AdView instance and load it
+                loadAdMobBanner(context, BANNER_ID, adRequest, listener)
+            }
 
-                    override fun onRequestExpired(bannerRequest: BannerRequest) {
+            override fun onRequestExpired(bannerRequest: BannerRequest) {
 
-                    }
-                })
+            }
+        })
                 .build().also {
                     // Request an ad from BidMachine without loading it
                     it.request(context)
@@ -236,27 +236,27 @@ class PrebidAdIntegrationActivity : AppCompatActivity() {
         AppLogger.log("Mrec", "load BidMachine")
 
         // Create new BidMachine request
-        mrecRequest = BidMachineAdRequestBuilderFactory.createBannerRequestBuilder()
-                .setSize(BannerSize.Size_300x250)
-                .setListener(object : BannerRequest.AdRequestListener {
-                    override fun onRequestSuccess(bannerRequest: BannerRequest, auctionResult: AuctionResult) {
-                        // Create AdRequest
-                        val adRequest = BidMachineUtils.createAdRequest(bannerRequest)
-                        // Create new AdView instance and load it
-                        loadAdMobMrec(context, MREC_ID, adRequest, listener)
-                    }
+        mrecRequest = BannerRequest.Builder(
+            AdPlacementConfig.bannerBuilder(BannerAdSize.MediumRectangle).build()
+        ).setListener(object : BannerRequest.AdRequestListener {
+            override fun onRequestSuccess(bannerRequest: BannerRequest, auctionResult: AuctionResult) {
+                // Create AdRequest
+                val adRequest = BidMachineUtils.createAdRequest(bannerRequest)
+                // Create new AdView instance and load it
+                loadAdMobMrec(context, MREC_ID, adRequest, listener)
+            }
 
-                    override fun onRequestFailed(bannerRequest: BannerRequest, bmError: BMError) {
-                        // Create AdRequest
-                        val adRequest = AdRequest.Builder().build()
-                        // Create new AdView instance and load it
-                        loadAdMobMrec(context, MREC_ID, adRequest, listener)
-                    }
+            override fun onRequestFailed(bannerRequest: BannerRequest, bmError: BMError) {
+                // Create AdRequest
+                val adRequest = AdRequest.Builder().build()
+                // Create new AdView instance and load it
+                loadAdMobMrec(context, MREC_ID, adRequest, listener)
+            }
 
-                    override fun onRequestExpired(bannerRequest: BannerRequest) {
+            override fun onRequestExpired(bannerRequest: BannerRequest) {
 
-                    }
-                })
+            }
+        })
                 .build().also {
                     // Request an ad from BidMachine without loading it
                     it.request(context)
@@ -319,29 +319,30 @@ class PrebidAdIntegrationActivity : AppCompatActivity() {
         AppLogger.log("Interstitial", "load BidMachine")
 
         // Create new BidMachine request
-        interstitialRequest = BidMachineAdRequestBuilderFactory.createInterstitialRequestBuilder()
-                .setListener(object : InterstitialRequest.AdRequestListener {
-                    override fun onRequestSuccess(
-                        interstitialRequest: InterstitialRequest,
-                        auctionResult: AuctionResult,
-                    ) {
-                        // Create AdRequest
-                        val adRequest = BidMachineUtils.createAdRequest(interstitialRequest)
-                        // Load InterstitialAd
-                        loadAdMobInterstitial(context, INTERSTITIAL_ID, adRequest, listener)
-                    }
+        interstitialRequest = InterstitialRequest.Builder(
+            AdPlacementConfig.interstitialBuilder().build()
+        ).setListener(object : InterstitialRequest.AdRequestListener {
+            override fun onRequestSuccess(
+                interstitialRequest: InterstitialRequest,
+                auctionResult: AuctionResult,
+            ) {
+                // Create AdRequest
+                val adRequest = BidMachineUtils.createAdRequest(interstitialRequest)
+                // Load InterstitialAd
+                loadAdMobInterstitial(context, INTERSTITIAL_ID, adRequest, listener)
+            }
 
-                    override fun onRequestFailed(interstitialRequest: InterstitialRequest, bmError: BMError) {
-                        // Create AdRequest
-                        val adRequest = AdRequest.Builder().build()
-                        // Load InterstitialAd
-                        loadAdMobInterstitial(context, INTERSTITIAL_ID, adRequest, listener)
-                    }
+            override fun onRequestFailed(interstitialRequest: InterstitialRequest, bmError: BMError) {
+                // Create AdRequest
+                val adRequest = AdRequest.Builder().build()
+                // Load InterstitialAd
+                loadAdMobInterstitial(context, INTERSTITIAL_ID, adRequest, listener)
+            }
 
-                    override fun onRequestExpired(interstitialRequest: InterstitialRequest) {
+            override fun onRequestExpired(interstitialRequest: InterstitialRequest) {
 
-                    }
-                })
+            }
+        })
                 .build().also {
                     // Request an ad from BidMachine without loading it
                     it.request(context)
@@ -392,26 +393,27 @@ class PrebidAdIntegrationActivity : AppCompatActivity() {
         AppLogger.log("Rewarded", "load BidMachine")
 
         // Create new BidMachine request
-        rewardedRequest = BidMachineAdRequestBuilderFactory.createRewardedRequestBuilder()
-                .setListener(object : RewardedRequest.AdRequestListener {
-                    override fun onRequestSuccess(rewardedRequest: RewardedRequest, auctionResult: AuctionResult) {
-                        // Create AdRequest
-                        val adRequest = BidMachineUtils.createAdRequest(rewardedRequest)
-                        // Load RewardedAd
-                        loadAdMobRewarded(context, REWARDED_ID, adRequest, listener)
-                    }
+        rewardedRequest = RewardedRequest.Builder(
+            AdPlacementConfig.rewardedBuilder().build()
+        ).setListener(object : RewardedRequest.AdRequestListener {
+            override fun onRequestSuccess(rewardedRequest: RewardedRequest, auctionResult: AuctionResult) {
+                // Create AdRequest
+                val adRequest = BidMachineUtils.createAdRequest(rewardedRequest)
+                // Load RewardedAd
+                loadAdMobRewarded(context, REWARDED_ID, adRequest, listener)
+            }
 
-                    override fun onRequestFailed(rewardedRequest: RewardedRequest, bmError: BMError) {
-                        // Create AdRequest
-                        val adRequest = AdRequest.Builder().build()
-                        // Load RewardedAd
-                        loadAdMobRewarded(context, REWARDED_ID, adRequest, listener)
-                    }
+            override fun onRequestFailed(rewardedRequest: RewardedRequest, bmError: BMError) {
+                // Create AdRequest
+                val adRequest = AdRequest.Builder().build()
+                // Load RewardedAd
+                loadAdMobRewarded(context, REWARDED_ID, adRequest, listener)
+            }
 
-                    override fun onRequestExpired(rewardedRequest: RewardedRequest) {
+            override fun onRequestExpired(rewardedRequest: RewardedRequest) {
 
-                    }
-                })
+            }
+        })
                 .build().also {
                     // Request an ad from BidMachine without loading it
                     it.request(context)
@@ -464,26 +466,27 @@ class PrebidAdIntegrationActivity : AppCompatActivity() {
         AppLogger.log("Native", "load BidMachine")
 
         // Create new BidMachine request
-        nativeRequest = BidMachineAdRequestBuilderFactory.createNativeRequestBuilder()
-                .setListener(object : NativeRequest.AdRequestListener {
-                    override fun onRequestSuccess(nativeRequest: NativeRequest, auctionResult: AuctionResult) {
-                        // Create AdRequest
-                        val adRequest = BidMachineUtils.createAdRequest(nativeRequest)
-                        // Create new AdLoader instance and load
-                        loadAdMobNative(context, NATIVE_ID, adRequest, listener)
-                    }
+        nativeRequest = NativeRequest.Builder(
+            AdPlacementConfig.nativeBuilder().build()
+        ).setListener(object : NativeRequest.AdRequestListener {
+            override fun onRequestSuccess(nativeRequest: NativeRequest, auctionResult: AuctionResult) {
+                // Create AdRequest
+                val adRequest = BidMachineUtils.createAdRequest(nativeRequest)
+                // Create new AdLoader instance and load
+                loadAdMobNative(context, NATIVE_ID, adRequest, listener)
+            }
 
-                    override fun onRequestFailed(nativeRequest: NativeRequest, bmError: BMError) {
-                        // Create AdRequest
-                        val adRequest = AdRequest.Builder().build()
-                        // Create new AdLoader instance and load
-                        loadAdMobNative(context, NATIVE_ID, adRequest, listener)
-                    }
+            override fun onRequestFailed(nativeRequest: NativeRequest, bmError: BMError) {
+                // Create AdRequest
+                val adRequest = AdRequest.Builder().build()
+                // Create new AdLoader instance and load
+                loadAdMobNative(context, NATIVE_ID, adRequest, listener)
+            }
 
-                    override fun onRequestExpired(nativeRequest: NativeRequest) {
+            override fun onRequestExpired(nativeRequest: NativeRequest) {
 
-                    }
-                })
+            }
+        })
                 .build().also {
                     // Request an ad from BidMachine without loading it
                     it.request(context)
