@@ -99,17 +99,17 @@ Java:
 ```java
 private void loadBanner() {
     // Create new BidMachine request
-    BannerRequest bannerRequest = new BannerRequest.Builder()
-            .setSize(BannerSize.Size_320x50)
-            .setListener(new BannerRequest.AdRequestListener() {
-                @Override
-                public void onRequestSuccess(@NonNull BannerRequest bannerRequest,
-                                             @NonNull AuctionResult auctionResult) {
-                    // Create AdRequest
-                    AdRequest adRequest = BidMachineUtils.createAdRequest(bannerRequest);
-                    // Load AdMob Banner
-                    loadAdMobBanner(adRequest);
-                }
+    BannerRequest bannerRequest = new BannerRequest.Builder(
+            AdPlacementConfig.bannerBuilder(BannerAdSize.Banner).build()
+    ).setListener(new BannerRequest.AdRequestListener() {
+              @Override
+              public void onRequestSuccess(@NonNull BannerRequest bannerRequest,
+                                           @NonNull AuctionResult auctionResult) {
+                  // Create AdRequest
+                  AdRequest adRequest = BidMachineUtils.createAdRequest(bannerRequest);
+                  // Load AdMob Banner
+                  loadAdMobBanner(adRequest);
+              }
             })
             .build();
     // Request an ad from BidMachine without loading it
@@ -122,20 +122,20 @@ Kotlin:
 ```kotlin
 private fun loadBanner() {
 // Create new BidMachine request
-val bannerRequest = BidMachineAdRequestBuilderFactory.createBannerRequestBuilder()
-        .setSize(BannerSize.Size_320x50)
-        .setListener(object : BannerRequest.AdRequestListener {
-            override fun onRequestSuccess(bannerRequest: BannerRequest, auctionResult: AuctionResult) {
-                // Create AdRequest
-                val adRequest = BidMachineUtils.createAdRequest(bannerRequest)
-                // Load AdMob Banner
-                loadAdMobMrec(adRequest)
-            }
-        })
-        .build().also {
-            // Request an ad from BidMachine without loading it
-            it.request(context)
+    val bannerRequest = mrecRequest = BannerRequest.Builder(
+        AdPlacementConfig.bannerBuilder(BannerAdSize.Banner).build()
+    ).setListener(object : BannerRequest.AdRequestListener {
+        override fun onRequestSuccess(bannerRequest: BannerRequest, auctionResult: AuctionResult) {
+            // Create AdRequest
+            val adRequest = BidMachineUtils.createAdRequest(bannerRequest)
+            // Load AdMob Banner
+            loadAdMobMrec(adRequest)
         }
+    })
+    .build().also {
+        // Request an ad from BidMachine without loading it
+        it.request(context)
+    }
 }
 ```
 
@@ -154,21 +154,21 @@ Java:
 ```java
 private void loadMrec() {
     // Create new BidMachine request
-    BannerRequest bannerRequest = new BannerRequest.Builder()
-            .setSize(BannerSize.Size_300x250)
-            .setListener(new BannerRequest.AdRequestListener() {
-                @Override
-                public void onRequestSuccess(@NonNull BannerRequest bannerRequest,
-                                             @NonNull AuctionResult auctionResult) {
-                    // Create AdRequest
-                    AdRequest adRequest = BidMachineUtils.createAdRequest(bannerRequest);
-                    // Load AdMob MREC
-                    loadAdMobMrec(adRequest);
-                }
+    BannerRequest mrecRequest = new BannerRequest.Builder(
+            AdPlacementConfig.bannerBuilder(BannerAdSize.MediumRectangle).build()
+    ).setListener(new BannerRequest.AdRequestListener() {
+              @Override
+              public void onRequestSuccess(@NonNull BannerRequest bannerRequest,
+                                           @NonNull AuctionResult auctionResult) {
+                  // Create AdRequest
+                  AdRequest adRequest = BidMachineUtils.createAdRequest(bannerRequest);
+                  // Load AdMob Banner
+                  loadAdMobBanner(adRequest);
+              }
             })
             .build();
     // Request an ad from BidMachine without loading it
-    bannerRequest.request(this);
+  mrecRequest.request(this);
 }
 ```
 
@@ -177,20 +177,20 @@ Kotlin:
 ```kotlin
 private fun loadMrec() {
     // Create new BidMachine request
-    val bannerRequest = BidMachineAdRequestBuilderFactory.createBannerRequestBuilder()
-            .setSize(BannerSize.Size_300x250)
-            .setListener(object : BannerRequest.AdRequestListener {
-                override fun onRequestSuccess(bannerRequest: BannerRequest, auctionResult: AuctionResult) {
-                    // Create AdRequest
-                    val adRequest = BidMachineUtils.createAdRequest(bannerRequest)
-                    // Load AdMob MREC
-                    loadAdMobMrec(adRequest)
-                }
-            })
-            .build().also {
-                // Request an ad from BidMachine without loading it
-                it.request(context)
-            }
+    val mrecRequest = BannerRequest.Builder(
+      AdPlacementConfig.bannerBuilder(BannerAdSize.MediumRectangle).build()
+    ).setListener(object : BannerRequest.AdRequestListener {
+        override fun onRequestSuccess(bannerRequest: BannerRequest, auctionResult: AuctionResult) {
+            // Create AdRequest
+            val adRequest = BidMachineUtils.createAdRequest(bannerRequest)
+            // Load AdMob MREC
+            loadAdMobMrec(adRequest)
+        }
+    })
+    .build().also {
+        // Request an ad from BidMachine without loading it
+        it.request(context)
+    }
 }
 ```
 
@@ -209,16 +209,17 @@ Java:
 ```java
 private void loadInterstitial() {
     // Create new BidMachine request
-    InterstitialRequest interstitialRequest = new InterstitialRequest.Builder()
-            .setListener(new InterstitialRequest.AdRequestListener() {
-                @Override
-                public void onRequestSuccess(@NonNull InterstitialRequest interstitialRequest,
-                                             @NonNull AuctionResult auctionResult) {
-                    // Create AdRequest
-                    AdRequest adRequest = BidMachineUtils.createAdRequest(interstitialRequest);
-                    // Load AdMob Interstitial
-                    loadAdMobInterstitial(adRequest);
-                }
+    InterstitialRequest interstitialRequest = new InterstitialRequest.Builder(
+            AdPlacementConfig.interstitialBuilder().build()
+    ).setListener(new InterstitialRequest.AdRequestListener() {
+              @Override
+              public void onRequestSuccess(@NonNull InterstitialRequest interstitialRequest,
+                                           @NonNull AuctionResult auctionResult) {
+                  // Create AdRequest
+                  AdRequest adRequest = BidMachineUtils.createAdRequest(interstitialRequest);
+                  // Load AdMob Interstitial
+                  loadAdMobInterstitial(adRequest);
+              }
             })
             .build();
     // Request an ad from BidMachine without loading it
@@ -231,19 +232,20 @@ Kotlin:
 ```kotlin
 private fun loadInterstitial() {
     // Create new BidMachine request
-    val interstitialRequest = BidMachineAdRequestBuilderFactory.createInterstitialRequestBuilder()
-            .setListener(object : InterstitialRequest.AdRequestListener {
-                override fun onRequestSuccess(interstitialRequest: InterstitialRequest, auctionResult: AuctionResult) {
-                    // Create AdRequest
-                    val adRequest = BidMachineUtils.createAdRequest(interstitialRequest)
-                    // Load AdMob Interstitial
-                    loadAdMobInterstitial(adRequest)
-                }
-            })
-            .build().also {
-                // Request an ad from BidMachine without loading it
-                it.request(context)
-            }
+    val interstitialRequest = InterstitialRequest.Builder(
+      AdPlacementConfig.interstitialBuilder().build()
+    ).setListener(object : InterstitialRequest.AdRequestListener {
+        override fun onRequestSuccess(interstitialRequest: InterstitialRequest, auctionResult: AuctionResult) {
+            // Create AdRequest
+            val adRequest = BidMachineUtils.createAdRequest(interstitialRequest)
+            // Load AdMob Interstitial
+            loadAdMobInterstitial(adRequest)
+        }
+    })
+    .build().also {
+        // Request an ad from BidMachine without loading it
+        it.request(context)
+    }
 }
 ```
 
@@ -262,16 +264,17 @@ Java:
 ```java
 private void loadRewarded() {
     // Create new BidMachine request
-    RewardedRequest rewardedRequest = new RewardedRequest.Builder()
-            .setListener(new RewardedRequest.AdRequestListener() {
-                @Override
-                public void onRequestSuccess(@NonNull RewardedRequest rewardedRequest,
-                                             @NonNull AuctionResult auctionResult) {
-                    // Create AdRequest
-                    AdRequest adRequest = BidMachineUtils.createAdRequest(rewardedRequest);
-                    // Load AdMob Rewarded
-                    loadAdMobRewarded(adRequest);
-                }
+    RewardedRequest rewardedRequest = new RewardedRequest.Builder(
+            AdPlacementConfig.rewardedBuilder().build()
+    ).setListener(new RewardedRequest.AdRequestListener() {
+              @Override
+              public void onRequestSuccess(@NonNull RewardedRequest rewardedRequest,
+                                           @NonNull AuctionResult auctionResult) {
+                  // Create AdRequest
+                  AdRequest adRequest = BidMachineUtils.createAdRequest(rewardedRequest);
+                  // Load AdMob Rewarded
+                  loadAdMobRewarded(adRequest);
+              }
             })
             .build();
     // Request an ad from BidMachine without loading it
@@ -284,19 +287,20 @@ Kotlin:
 ```kotlin
 private fun loadRewarded() {
     // Create new BidMachine request
-    val rewardedRequest = BidMachineAdRequestBuilderFactory.createRewardedRequestBuilder()
-            .setListener(object : RewardedRequest.AdRequestListener {
-                override fun onRequestSuccess(rewardedRequest: RewardedRequest, auctionResult: AuctionResult) {
-                    // Create AdRequest
-                    val adRequest = BidMachineUtils.createAdRequest(rewardedRequest)
-                    // Load AdMob Rewarded
-                    loadAdMobRewarded(adRequest)
-                }
-            })
-            .build().also {
-                // Request an ad from BidMachine without loading it
-                it.request(context)
-            }
+    val rewardedRequest = RewardedRequest.Builder(
+      AdPlacementConfig.rewardedBuilder().build()
+    ).setListener(object : RewardedRequest.AdRequestListener {
+        override fun onRequestSuccess(rewardedRequest: RewardedRequest, auctionResult: AuctionResult) {
+            // Create AdRequest
+            val adRequest = BidMachineUtils.createAdRequest(rewardedRequest)
+            // Load AdMob Rewarded
+            loadAdMobRewarded(adRequest)
+        }
+    })
+    .build().also {
+        // Request an ad from BidMachine without loading it
+        it.request(context)
+    }
 }
 ```
 
@@ -315,16 +319,17 @@ Java:
 ```java
 private void loadNative() {
     // Create new BidMachine request
-    NativeRequest nativeRequest = BidMachineAdRequestBuilderFactory.createNativeRequestBuilder()
-            .setListener(new NativeRequest.AdRequestListener() {
-                @Override
-                public void onRequestSuccess(@NonNull NativeRequest nativeRequest,
-                                             @NonNull AuctionResult auctionResult) {
-                    // Create AdRequest
-                    AdRequest adRequest = BidMachineUtils.createAdRequest(nativeRequest);
-                    // Load AdMob Native
-                    loadAdMobNative(adRequest);
-                }
+    NativeRequest nativeRequest = new NativeRequest.Builder(
+            AdPlacementConfig.nativeBuilder().build()
+    ).setListener(new NativeRequest.AdRequestListener() {
+              @Override
+              public void onRequestSuccess(@NonNull NativeRequest nativeRequest,
+                                           @NonNull AuctionResult auctionResult) {
+                  // Create AdRequest
+                  AdRequest adRequest = BidMachineUtils.createAdRequest(nativeRequest);
+                  // Load AdMob Native
+                  loadAdMobNative(adRequest);
+              }
             })
             .build();
     // Request an ad from BidMachine without loading it
@@ -337,19 +342,20 @@ Kotlin:
 ```kotlin
 private void loadNative() {
     // Create new BidMachine request
-    val nativeRequest = BidMachineAdRequestBuilderFactory.createNativeRequestBuilder()
-            .setListener(object : NativeRequest.AdRequestListener {
-                override fun onRequestSuccess(nativeRequest: NativeRequest, auctionResult: AuctionResult) {
-                    // Create AdRequest
-                    val adRequest = BidMachineUtils.createAdRequest(nativeRequest)
-                    // Load AdMob Native
-                    loadAdMobNative(adRequest)
-                }
-            })
-            .build().also {
-                // Request an ad from BidMachine without loading it
-                it.request(context)
-            }
+    val nativeRequest = NativeRequest.Builder(
+        AdPlacementConfig.nativeBuilder().build()
+    ).setListener(object : NativeRequest.AdRequestListener {
+        override fun onRequestSuccess(nativeRequest: NativeRequest, auctionResult: AuctionResult) {
+            // Create AdRequest
+            val adRequest = BidMachineUtils.createAdRequest(nativeRequest)
+            // Load AdMob Native
+            loadAdMobNative(adRequest)
+        }
+    })
+    .build().also {
+        // Request an ad from BidMachine without loading it
+        it.request(context)
+    }
 }
 ```
 
